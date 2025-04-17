@@ -1,0 +1,26 @@
+name: Deploy to Gabia Container
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Login to Gabia Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: containers.gabia.com
+        username: ${{ secrets.GABIA_USERNAME }}
+        password: ${{ secrets.GABIA_PASSWORD }}
+    
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: true
+        tags: containers.gabia.com/savemarketing/savemarketing:latest
