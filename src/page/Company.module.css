@@ -1,0 +1,9 @@
+.contentWrap {
+    width:100%;
+    padding-block:80px;
+    display:flex;
+    flex-direction: column;
+    gap:60px;
+}
+
+h2 {font-weight: 600; padding-bottom:30px;}
